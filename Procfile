@@ -1,1 +1,1 @@
-web: gunicorn sentiment_analyser.wsgi --log-file -
+web: gunicorn nlp_project.wsgi --log-file -
