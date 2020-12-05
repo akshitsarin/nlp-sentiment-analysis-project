@@ -1,7 +1,4 @@
 [Dolphin]
-Timestamp=2020,12,5,23,45,4
+Timestamp=2020,12,6,1,2,56
 Version=4
 VisibleRoles=Icons_text,Icons_size
-
-[Settings]
-HiddenFilesShown=true
