@@ -7,52 +7,77 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@400;600&display=swap" rel="stylesheet">
-
+  <link rel="icon" href="https://akshit-sarin.s3.ap-south-1.amazonaws.com/favicon.png" type="image/gif">
 
   <style>
     body {
       font-family: 'Baloo Chettan 2', cursive;
+      overflow-x: hidden;
+      margin-bottom: 3em;
     }
 
-    h1 {
-      font-size: 4em;
+    a {
+      text-decoration: none !important;
+    }
+
+    .navbar {
+      margin-top: 0.8em;
+      font-size: 1.4em;
+      text-align: center;
+    }
+
+    #courseDetails {
+      font-size: 2.4em;
       color: #2D2D2D !important;
+      font-weight: bold;
+      margin-top: 0.6em;
     }
 
-    h2 {
-      font-size: 3em;
+    #title {
+      margin-top: 0.2em;
+      font-size: 3.4em;
     }
 
-    h3 {
-      font-size: 2.6em;
-    }
-
-    ul {
-      font-size: 2em;
+    li {
+      font-size: 1.4em;
     }
 
   </style>
 </head>
 
 <body>
+  <div class="row navbar">
+    <div class="col">
+      <a href="/review">
+        <button class="btn btn-lg btn-primary">
+          Add a review!
+        </button>
+      </a>
+    </div>
+
+    <div class="col">
+      <a href="/ratings">
+        <button class="btn btn-lg btn-success">
+          View Ratings
+        </button>
+      </a>
+    </div>
+  </div>
+  
   <div class="container">
-    <h1> CS - 491: Natural Language Processing</h1>
-    <h2>
-      <strong style="color: #F6C700; font-weight: 600">
+    <h1 id="courseDetails"> CS - 491: Natural Language Processing</h1>
+    <h1 id="title"><strong style="color: #F6C700; font-weight: 600">
         Amazon  + IMDb + Yelp
       </strong> Sentiment Analysis
-    </h2> 
-<hr>
-    <h3> Created By: </h3>
-    <br>
-    <ul>
-      <li>Akshit Sarin</li>
-      <li>Pragya Kapoor</li>
-      <li>Aaryamann Sharma</li>
-    </ul>
+    </h1> 
 
-    {% block content %} {% endblock %}
+    <hr style="width: 60%;">
+    
   </div>
+  
+  {% block content %} {% endblock %}
+
+    
 </body>
 
 </html>
