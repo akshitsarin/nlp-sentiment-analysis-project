@@ -88,29 +88,29 @@ def ratings_view(request, *args, **keywordargs):
 
 	# queen ratings
 	queen_pos = 0
-	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name="Queen" AND positive > 0'):
+	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name=\'Queen\' AND positive=1'):
 		queen_pos += 1
 
 	queen_neg = 0
-	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name="Queen" AND negative > 0'):
+	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name=\'Queen\' AND negative=1'):
 		queen_neg += 1
 
 	# ek tha tiger ratings
 	tiger_pos = 0
-	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name="Ek Tha Tiger" AND positive > 0'):
+	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name=\'Ek Tha Tiger\' AND positive=1'):
 		tiger_pos += 1
 
 	tiger_neg = 0
-	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name="Ek Tha Tiger" AND negative > 0'):
+	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name=\'Ek Tha Tiger\' AND negative=1'):
 		tiger_neg += 1
 
 	# joker ratings
 	joker_pos = 0
-	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name="Joker" AND positive > 0'):
+	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name=\'Joker\' AND positive=1'):
 		joker_pos += 1
 
 	joker_neg = 0
-	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name="Joker" AND negative > 0'):
+	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name=\'Joker\' AND negative=1'):
 		joker_neg += 1
 
 	# add to ratings dict
