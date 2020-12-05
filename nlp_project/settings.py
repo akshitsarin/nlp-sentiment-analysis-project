@@ -1,4 +1,7 @@
 import os
+import django_heroku
+import dj_database_url
+import dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -13,8 +16,7 @@ SECRET_KEY = 'b3(h%q#7j5ajyz0#upm4*i_)dq7y&ih_b*awr)8t^=%avjusw-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['sastaimdb.herokuapp.com']
 
 # Application definition
 
@@ -65,7 +67,7 @@ WSGI_APPLICATION = 'nlp_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': str(BASE_DIR) + str('/') + 'db.sqlite3',
     }
 }
 
@@ -114,3 +116,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"), 
 ]
+
+if os.getcwd() == '/app':
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    ALLOWED_HOSTS = ['sastaimdb.herokuapp.com']
+
+    DEBUG = True
+
+django_heroku.settings(locals())

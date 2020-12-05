@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-import joblib
 
 from .models import Reviews
 	
