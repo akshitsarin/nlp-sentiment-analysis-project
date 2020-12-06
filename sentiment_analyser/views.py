@@ -89,7 +89,7 @@ def ratings_view(request, *args, **keywordargs):
 	# queen ratings
 	queen_pos = 0
 	queen_neg = 0
-	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name=\'Queen\''):
+	for i in Reviews.objects.raw('SELECT 1 as id, * FROM sentiment_analyser_reviews WHERE name=\'Queen\''):
 		if i.positive == 1:
 			queen_pos += 1
 		if i.negative == 1:
@@ -98,7 +98,7 @@ def ratings_view(request, *args, **keywordargs):
 	# ek tha tiger ratings
 	tiger_pos = 0
 	tiger_neg = 0
-	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name=\'Ek Tha Tiger\''):
+	for i in Reviews.objects.raw('SELECT 1 as id, * FROM sentiment_analyser_reviews WHERE name=\'Ek Tha Tiger\''):
 		if i.positive == 1:
 			tiger_pos += 1
 		if i.negative == 1:
@@ -107,7 +107,7 @@ def ratings_view(request, *args, **keywordargs):
 	# joker ratings
 	joker_pos = 0
 	joker_neg = 0
-	for i in Reviews.objects.raw('SELECT * FROM sentiment_analyser_reviews WHERE name=\'Joker\''):
+	for i in Reviews.objects.raw('SELECT 1 as id, * FROM sentiment_analyser_reviews WHERE name=\'Joker\''):
 		if i.positive == 1:
 			joker_pos += 1
 		if i.negative == 1:
