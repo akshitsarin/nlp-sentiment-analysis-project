@@ -2,82 +2,119 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <title>NLP - Project</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://akshit-sarin.s3.ap-south-1.amazonaws.com/favicon.png" type="image/gif">
+	<meta charset="UTF-8" />
+	<title>NLP - Project</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="icon" href="https://akshit-sarin.s3.ap-south-1.amazonaws.com/favicon.png" type="image/gif">
 
-  <style>
-    body {
-      font-family: 'Baloo Chettan 2', cursive;
-      overflow-x: hidden;
-      margin-bottom: 3em;
-    }
+	<style>
+		html {
+			overflow-y: scroll;
+			overflow-x: hidden;
+			zoom: 90% !important;
+		}
 
-    a {
-      text-decoration: none !important;
-    }
+		body {
+			font-family: 'Baloo Chettan 2', cursive;
+			overflow-x: hidden;
+			margin-bottom: 2em;
+			color: #434343;
+		}
 
-    .navbar {
-      margin-top: 0.6em;
-      font-size: 1.4em;
-      text-align: center;
-    }
+		a {
+			text-decoration: none !important;
+		}
 
-    #courseDetails {
-      font-size: 2.4em;
-      color: #2D2D2D !important;
-      font-weight: bold;
-      margin-top: 0.4em;
-    }
+		.navbar {
+			margin: 0.6em auto 0em;
+			text-align: center;
+			width: 80%;
+		}
 
-    #title {
-      margin-top: 0.2em;
-      font-size: 3.4em;
-    }
+		#courseDetails {
+			margin-left: 2%;
+			font-size: 2.6vw;
+			color: #2D2D2D !important;
+			font-weight: bold;
+			margin-top: 0.4em;
+		}
 
-    li {
-      font-size: 1.4em;
-    }
+		.btn {
+			font-size: 1.6vw;
+		}
 
-  </style>
+		#title {
+			margin-left: 2%;
+			margin-top: 0.2em;
+			font-size: 3.2vw;
+		}
+
+		li {
+			font-size: 1.4em;
+		}
+
+		#githubLink {
+			display: inline-flex; 
+			position: absolute; 
+			right: 1em; 
+			top: 1.2em;
+		}
+
+		.container {
+			text-align: center;
+		}
+
+	</style>
 </head>
 
 <body>
-  <div class="row navbar">
-    <div class="col">
-      <a href="/review">
-        <button class="btn btn-lg btn-primary">
-          Add a review!
-        </button>
-      </a>
-    </div>
+	<div id="githubLink">
+		<a class="github-button" href="https://github.com/akshitsarin" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-show-count="true" data-size="large" aria-label="Follow @akshitsarin on GitHub">@akshitsarin</a>
+	</div>
+	
+	<div class="row navbar">
+		<div class="col">
+			<a href="/review">
+				<button class="btn btn-lg btn-primary">
+					Add a review!
+				</button>
+			</a>
+		</div>
 
-    <div class="col">
-      <a href="/ratings">
-        <button class="btn btn-lg btn-success">
-          View Ratings
-        </button>
-      </a>
-    </div>
-  </div>
-  
-  <div class="container">
-    <h1 id="courseDetails"> CS: 491 - Natural Language Processing</h1>
-    <h1 id="title"><strong style="color: #F6C700; font-weight: 600">
-        Amazon  + IMDb + Yelp
-      </strong> Sentiment Analysis
-    </h1> 
+		<div class="col">
+			<h1 style="font-weight: bold; font-size: 4vw;">Review It!</h1>
+		</div>
+		<div class="col">
+			<a href="/ratings">
+				<button class="btn btn-lg btn-success">
+					View Ratings
+				</button>
+			</a>
+		</div>
+	</div>
+	
+	<hr width="60%">
 
-    <hr style="width: 60%;">
-    
-  </div>
-  
-  {% block content %} {% endblock %}
+	<div class="container">
+		<h1 id="courseDetails">
+			CS: 491 - Natural Language Processing
+		</h1>
 
-    
+		<h1 id="title">
+			<strong style="color: #F6C700; font-weight: 600">
+				Amazon  + IMDb + Yelp
+			</strong> Sentiment Analysis
+		</h1> 
+
+		<hr style="width: 60%;">
+		
+	</div>
+	
+	{% block content %} {% endblock %}
+		
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
 </html>

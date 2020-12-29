@@ -47,7 +47,7 @@
 
 	.autocomplete-items div {
 		padding: 10px;
-		font-size: 1.6em;
+		font-size: 1.8vw;
 		cursor: pointer;
 		width: 10em;
         color: white;
@@ -59,6 +59,13 @@
 		background-color: #292929;
 	}
 
+    .prompt {
+        margin-top: 0.8em;
+        font-size: 2.2vw;
+        text-align: left;
+        margin-left: 4em;
+    }
+
 </style>
 
 <div class="container" style="margin-top: 2em; width: 100%;">
@@ -66,46 +73,33 @@
     <form autocomplete="off" action="/review_added" method="POST">
         {% csrf_token %}
         <div class="inputDiv">
-            <h1 style="text-align: left; margin-left: 3.3em;">
+            <h1 class="prompt">
                 Select a Movie:
             </h1> 
 
-            <div class="container autocomplete" 
-                style="margin-top: 1em;">
+            <div class="container autocomplete">
     
                 <input id="movie" type="text" name="movie" 
                 placeholder="Start Typing To Select..." required="required">
             </div>
 
-            <h1 style="margin-top: 1.6em; text-align: left; margin-left: 3.3em;">
+            <h1 class="prompt">
                 Add the Review:
             </h1> 
-            <textarea id="input" name="review"></textarea> 
+            <textarea id="input" name="review" placeholder="The movie was really good..."></textarea> 
             
             <br><br>
 
             <button id="submit" class="btn btn-lg">
-                submit!
+                Submit!
             </button>
         </div>
     </form>
     
     <hr style="width: 100%; margin-top: 2em;">
 
-    <h3 style="font-weight: bold;">Semester Project by:</h3>
+    <!-- <h3 style="font-weight: bold;">Semester Project by: Akshit Sarin</h3> -->
   
-    <ul>
-      <div class="row">
-          <div class="col-2"> <li>Akshit Sarin</li> </div>
-          
-          <div class="col-2"> <li>Pragya Kapoor</li> </div>
-
-          <div class="col" style="margin-left: 1.6em;">
-              <li>Aaryamann Sharma</li>
-          </div>
-      </div>
-    </ul>
-
 </div>
 
 <script>

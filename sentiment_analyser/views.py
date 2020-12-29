@@ -2,14 +2,24 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Reviews
-	
+import uuid 
+  
 def review_view(request, *args, **keywordargs):
 	return render(request, 'review.html', {})
 
 def review_added_view(request, *args, **keywordargs):
+	context = {}	
+	context['movie'] = request.POST.get('movie')
+	movie_list = ["Queen", "Ek Tha Tiger", "Joker"]
+
+	if context['movie'] not in movie_list:
+		return render(request, 'movie_not_present.html', context)
+
 	def get_review(input_sentence):
-		if "not" in input_sentence.split():
-			return 0
+		tkens = input_sentence.split()
+		if "not" in tkens:
+			if tkens[tkens.index("not")+1] != "bad":
+				return 0
 
 		import spacy
 		from spacy.lang.en.stop_words import STOP_WORDS
@@ -33,8 +43,6 @@ def review_added_view(request, *args, **keywordargs):
 
 		data = data_yelp.append([data_amazon, data_imdb], ignore_index=True)
 		data = data.dropna()
-
-		punct = '!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~'
 		
 		def text_data_cleaning(sentence):
 			return sentence.split()
@@ -47,24 +55,28 @@ def review_added_view(request, *args, **keywordargs):
 
 		X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
 		
-		clf = Pipeline([('tfidf', tfidf), ('clf', classifier)])
-		clf.fit(X_train, y_train)
+		pipe = Pipeline([('tfidf', tfidf), ('pipe', classifier)])
+		pipe.fit(X_train, y_train)
 
-		return int(clf.predict([input_sentence])[0])
+		return int(pipe.predict([input_sentence])[0])
 
-	context = {}	
-	context['movie'] = request.POST.get('movie')
-
-	# importing model
 	mapping = {
 		1: "Positive",
 		0: "Negative"
 	}
 	
-	review = get_review(str(request.POST.get('review')))
-	# if review is positive, add to positive
+	# spell checker
+	from textblob import TextBlob
+	corrected_review = TextBlob(request.POST.get('review')).correct()
+
+	# get unique id
+	review = get_review(str(corrected_review))
+	uniq_id = uuid.uuid1()
+	
+	# if review Sentiment is positive, add to positive
 	if review == 1:
 		x = Reviews(
+			id=uniq_id.hex,
 			name=request.POST.get('movie'),
 			positive=1,
 			negative=0
@@ -74,6 +86,7 @@ def review_added_view(request, *args, **keywordargs):
 	# if review is negative, add to negative
 	if review == 0:
 		x = Reviews(
+			id=uniq_id.hex,
 			name=request.POST.get('movie'),
 			positive=0,
 			negative=1
@@ -81,6 +94,8 @@ def review_added_view(request, *args, **keywordargs):
 		x.save()
 
 	context['review_type'] = mapping[review]
+	context['review'] = corrected_review
+	
 	return render(request, 'review_added.html', context)
 	
 def ratings_view(request, *args, **keywordargs):

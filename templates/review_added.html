@@ -3,16 +3,33 @@
 <style>
     span {
         font-weight: bold;
-        color: teal;
+        color: #007BFF;
+    }
+
+    #thanks {
+        font-weight: bold;
+        font-size: 4em;
+    }
+
+    #message {
+        margin-top: 0.8em;
+        font-size: 2.4em;
     }
 </style>
 
 <div class="container" style="margin-top: 2em;">
 
-    <h1 style="font-weight: bold; margin-bottom: 0.6em;">Thanks for your time!</h1>
+    <h1 id="thanks">Thanks for your time!</h1>
 
-    <h2>A <span> {{ review_type }} </span>review has been added for the movie 
-        <span> {{ movie }} </span></h2>
+    <h2 id="message">
+        A <span> {{ review_type }} </span>review has been added for
+        the movie <span> {{ movie }} </span>
+    </h2>
+
+    <hr style="width: 60%;">
+
+    <h2 style="font-weight: bold">The Review:</h2>
+    <h3> {{ review }} </h3>
 
 </div>
 {% endblock %} 

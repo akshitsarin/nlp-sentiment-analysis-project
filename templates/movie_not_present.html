@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block content %}
+
+<style>
+	span {
+		font-weight: bold;
+		color: #D6AF00;
+	}
+
+	#notPresent {
+		font-weight: bold;
+		font-size: 4vw;
+	}
+
+	h2 {
+		margin-top: 0.8em;
+		font-size: 2.4vw;
+	}
+
+	li {
+		font-size: 1.6vw;
+	}
+
+	.not {
+		text-align: left;
+		width: 70%;
+	}
+
+	#goBack {
+	  color: white !important;
+	  background-color: #d6af00 !important;
+	}
+
+	#goBack:hover {
+	  background-color: #ae8e00 !important;
+	}
+
+</style>
+
+<div class="container not" style="margin-top: 2em;">
+
+	<h1 id="notPresent">Uh oh!</h1>
+
+	<h2 id="message">
+		Looks like the movie <span> {{ movie }} </span>doesn't exist in our movie database :(
+	</h2>
+
+	<hr style="width: 60%;">
+
+	<h2 style="font-weight: bold">Try adding a review for the following movies:</h2>
+
+	<ul>
+		<li>Ek Tha Tiger</li>
+		<li>Queen</li>
+		<li>Joker</li>
+	</li>
+
+	<div style="text-align: center; margin-top: 1em;">
+		<a href="/review">
+			<button id="goBack" class="btn btn-lg">
+				Go Back!
+			</button>
+		</a>
+	</div>
+		
+</div>
+{% endblock %} 
