@@ -21,9 +21,6 @@ def review_added_view(request, *args, **keywordargs):
 			if tkens[tkens.index("not")+1] != "bad":
 				return 0
 
-		import spacy
-		nlp = spacy.load('en_core_web_sm')
-
 		import pandas as pd
 		from sklearn.feature_extraction.text import TfidfVectorizer
 		from sklearn.svm import LinearSVC
@@ -31,10 +28,10 @@ def review_added_view(request, *args, **keywordargs):
 		from sklearn.model_selection import train_test_split
 
 		# import cleaned data processed from colab
-		all_data = pd.read_csv('/content/all_data.txt', sep = '\t', header = None)
-		columns_name = ['Review', 'Sentiment']
-		all_data.columns = columns_name
-		all_data = all_data.dropna()
+		data = pd.read_csv('all_data.txt', sep = '\t', header = None)
+		columns = ['Review', 'Sentiment']
+		data.columns = columns
+		data = data.dropna()
 
 		def tokenize(sentence):
 			return sentence.split()
@@ -63,7 +60,7 @@ def review_added_view(request, *args, **keywordargs):
 
 	# get unique id
 	uniq_id = uuid.uuid1()
-	
+
 	review = get_review(str(corrected_review))
 	# if review Sentiment is positive, add to positive
 	if review == 1:
