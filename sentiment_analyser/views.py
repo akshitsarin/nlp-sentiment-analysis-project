@@ -22,7 +22,6 @@ def review_added_view(request, *args, **keywordargs):
 				return 0
 
 		import spacy
-		from spacy.lang.en.stop_words import STOP_WORDS
 		nlp = spacy.load('en_core_web_sm')
 
 		import pandas as pd
@@ -31,29 +30,22 @@ def review_added_view(request, *args, **keywordargs):
 		from sklearn.pipeline import Pipeline
 		from sklearn.model_selection import train_test_split
 
-		data_yelp = pd.read_csv('yelp_labelled.txt', sep='\t', header = None)
+		# import cleaned data processed from colab
+		all_data = pd.read_csv('/content/all_data.txt', sep = '\t', header = None)
 		columns_name = ['Review', 'Sentiment']
-		data_yelp.columns = columns_name
+		all_data.columns = columns_name
+		all_data = all_data.dropna()
 
-		data_amazon = pd.read_csv('amazon_cells_labelled.txt', sep = '\t', header = None)
-		data_amazon.columns = columns_name
-
-		data_imdb = pd.read_csv('imdb_labelled.txt', sep = '\t', header = None)
-		data_imdb.columns = columns_name
-
-		data = data_yelp.append([data_amazon, data_imdb], ignore_index=True)
-		data = data.dropna()
-		
-		def text_data_cleaning(sentence):
+		def tokenize(sentence):
 			return sentence.split()
 
-		tfidf = TfidfVectorizer(tokenizer = text_data_cleaning)
+		tfidf = TfidfVectorizer(tokenizer = tokenize)
 		classifier = LinearSVC()
 
 		X = data['Review']
 		y = data['Sentiment']
 
-		X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
+		X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 69)
 		
 		pipe = Pipeline([('tfidf', tfidf), ('pipe', classifier)])
 		pipe.fit(X_train, y_train)
@@ -70,9 +62,9 @@ def review_added_view(request, *args, **keywordargs):
 	corrected_review = TextBlob(request.POST.get('review')).correct()
 
 	# get unique id
-	review = get_review(str(corrected_review))
 	uniq_id = uuid.uuid1()
 	
+	review = get_review(str(corrected_review))
 	# if review Sentiment is positive, add to positive
 	if review == 1:
 		x = Reviews(
